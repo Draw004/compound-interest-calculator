@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Compound Interest Calculator | Carrowmont</title>
+  <meta name="description" content="Calculate compound growth from a starting amount, annual rate and compounding frequency. Add optional regular contributions and compare growth over time." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://carrowmont.com/compound-interest-calculator/" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta name="theme-color" content="#0e827a" />
+  <meta property="og:site_name" content="Carrowmont" />
+  <meta property="og:title" content="Compound Interest Calculator | Carrowmont" />
+  <meta property="og:description" content="Explore how principal, rate, time, compounding frequency and optional regular contributions shape modeled growth." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://carrowmont.com/compound-interest-calculator/" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="styles.css?v=20261016-core8" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://carrowmont.com/compound-interest-calculator/#app","name":"Carrowmont Compound Interest Calculator","url":"https://carrowmont.com/compound-interest-calculator/","applicationCategory":"FinanceApplication","operatingSystem":"Any","description":"A deterministic educational calculator for compound growth, compounding frequency, optional regular contributions, simple-interest comparison and inflation-adjusted value.","isPartOf":{"@id":"https://carrowmont.com/#website"},"publisher":{"@id":"https://carrowmont.com/#organization"}},{"@type":"BreadcrumbList","@id":"https://carrowmont.com/compound-interest-calculator/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Carrowmont","item":"https://carrowmont.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://carrowmont.com/tools.html"},{"@type":"ListItem","position":3,"name":"Compound Interest Calculator","item":"https://carrowmont.com/compound-interest-calculator/"}]}]}</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand-cluster">
+      <a class="brand" href="/" aria-label="Carrowmont home">CARROWMONT</a>
+      <span class="brand-divider" aria-hidden="true"></span>
+      <span class="product-label">Compound Interest Calculator</span>
+    </div>
+    <div class="header-actions">
+      <nav class="top-nav" aria-label="Primary navigation">
+        <a href="#calculator">Calculator</a><a href="#growth-path">Growth path</a><a href="#methodology">Methodology</a><a href="/tools.html">All tools</a><a href="/">Home</a>
+      </nav>
+      <details class="locale-menu" id="localeMenu">
+        <summary id="localeSummary" aria-label="Choose country and currency"><span class="locale-globe" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 4.5 6 4.5 9S15 18 12 21c-3-3-4.5-6-4.5-9S9 6 12 3z"/></svg></span><span id="localeCurrent">India · INR</span><span class="locale-chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></summary>
+        <div class="locale-popover">
+          <h3>Country &amp; currency</h3><p>Choose the context that makes the numbers easiest to understand.</p>
+          <label>Country / region<select id="regionSelect"></select></label>
+          <label>Currency<select id="currencySelect"></select></label>
+          <div class="locale-note"><strong>Important:</strong> Changing currency changes the unit and number format. It does not convert entered amounts using an exchange rate.</div>
+          <button class="btn btn-primary btn-small" id="localeDone" type="button">Done</button>
+        </div>
+      </details>
+    </div>
+  </div>
+  <nav class="mobile-nav" aria-label="Mobile navigation"><div class="container"><a href="#calculator">Calculator</a><a href="#growth-path">Growth path</a><a href="#methodology">Methodology</a><a href="/tools.html">All tools</a><a href="/">Home</a></div></nav>
+</header>
+
+<main>
+<section class="intro">
+  <div class="container tool-breadcrumb"><a href="/tools.html">← Back to all Carrowmont tools</a></div>
+  <div class="container intro-grid">
+    <div>
+      <div class="eyebrow">COMPOUNDING &amp; GROWTH</div>
+      <h1>See how compounding can change your money over time.</h1>
+      <p class="lede">Start with a principal, annual rate and time horizon. Choose how often the rate compounds, then optionally add regular contributions and an inflation assumption.</p>
+      <div class="chips"><span>Compound growth</span><span>Effective annual rate</span><span>Regular contributions</span><span>Simple-interest comparison</span><span>Inflation context</span><span>Year-by-year table</span></div>
+    </div>
+    <aside class="intro-card" aria-label="How the calculator works">
+      <div class="eyebrow">THE IDEA</div>
+      <div class="mini-flow"><strong>Starting amount</strong><span>→</span><strong>Growth on growth</strong><span>→</span><strong>Ending value</strong></div>
+      <p>Compound interest applies each period's growth to a changing balance. If you add regular contributions, each contribution receives a different amount of time to grow.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="learn-bridge" aria-labelledby="learnBridgeTitle">
+  <div class="container learn-bridge-card">
+    <div><span class="eyebrow">UNDERSTAND BEFORE YOU MODEL</span><h2 id="learnBridgeTitle">Compounding is a mechanism, not a promise.</h2><p>Learn why time, rate and contribution timing can change a projection—and why a smooth calculator curve is not the same as a market forecast.</p></div>
+    <div class="learn-actions"><a class="btn btn-secondary" href="/compounding-and-time.html">Read the compounding guide</a><a class="text-link" href="/compound-interest-monthly-contributions.html">Monthly contributions explained →</a></div>
+  </div>
+</section>
+
+<section class="planner-shell" id="calculator">
+  <div class="container planner-grid">
+    <section class="planner-card" aria-labelledby="assumptionsHeading">
+      <div class="section-head"><div><div class="eyebrow">YOUR CALCULATION</div><h2 id="assumptionsHeading">Build the assumptions</h2></div><button class="text-btn" id="resetBtn" type="button">Reset to Defaults</button></div>
+
+      <div class="step">
+        <div class="step-title"><span>1</span><div><h3>Starting amount and rate</h3><p>Use a stated annual rate as an assumption. For market investments, this is a modeled growth rate—not guaranteed interest.</p></div></div>
+        <div class="fields fields-2">
+          <label class="field"><span>Starting amount</span><div class="money-input"><span class="currency-prefix">₹</span><input id="principal" type="number" min="0" max="1000000000" step="1000" value="100000" inputmode="decimal" /></div><small>The principal or opening balance before modeled growth.</small></label>
+          <label class="field"><span>Annual interest / growth rate</span><div class="input-suffix"><input id="annualRate" type="number" min="-20" max="50" step="0.1" value="7" inputmode="decimal" /><span>% p.a.</span></div><small>Nominal annual rate used with the selected compounding frequency.</small></label>
+          <label class="field"><span>Time horizon</span><div class="input-suffix"><input id="years" type="number" min="1" max="60" step="1" value="10" inputmode="numeric" /><span>years</span></div><small>Whole years from 1 to 60.</small></label>
+          <label class="field"><span>Compounding frequency</span><select id="compoundingFrequency"><option value="annual">Annually</option><option value="semiannual">Semi-annually</option><option value="quarterly">Quarterly</option><option value="monthly" selected>Monthly</option><option value="daily">Daily</option></select><small>How often the stated nominal annual rate is compounded.</small></label>
+        </div>
+      </div>
+
+      <div class="step optional-step">
+        <div class="step-title"><span>2</span><div><h3>Optional regular contributions</h3><p>Add evenly spaced contributions if you want to see principal growth and ongoing saving together.</p></div></div>
+        <label class="toggle-row"><input id="contributionEnabled" type="checkbox" /><span><strong>Add regular contributions</strong><small>Keep this off for a pure lump-sum compound-interest calculation.</small></span></label>
+        <div class="fields fields-3" id="contributionFields" aria-disabled="true">
+          <label class="field"><span>Contribution amount</span><div class="money-input"><span class="currency-prefix">₹</span><input id="contributionAmount" type="number" min="0" max="100000000" step="100" value="5000" inputmode="decimal" disabled /></div><small>Amount added each contribution period.</small></label>
+          <label class="field"><span>Contribution frequency</span><select id="contributionFrequency" disabled><option value="weekly">Weekly</option><option value="biweekly">Every 2 Weeks</option><option value="semimonthly">Twice Monthly</option><option value="fourweekly">Every 4 Weeks</option><option value="monthly" selected>Monthly</option><option value="quarterly">Quarterly</option><option value="annual">Annually</option></select><small>Independent of compounding frequency.</small></label>
+          <label class="field"><span>Contribution timing</span><select id="contributionTiming" disabled><option value="end" selected>End of period</option><option value="beginning">Beginning of period</option></select><small>Beginning-of-period contributions receive one additional contribution period of modeled growth.</small></label>
+        </div>
+      </div>
+
+      <details class="advanced" id="advancedAssumptions">
+        <summary>Advanced assumptions</summary>
+        <div class="advanced-body">
+          <label class="toggle-row"><input id="inflationEnabled" type="checkbox" /><span><strong>Show inflation-adjusted ending value</strong><small>Convert the modeled ending balance into today's purchasing-power terms.</small></span></label>
+          <label class="field inflation-field"><span>Annual inflation rate</span><div class="input-suffix"><input id="inflationRate" type="number" min="0" max="30" step="0.1" value="3" inputmode="decimal" disabled /><span>% p.a.</span></div><small>This changes only the real-value comparison, not the nominal compound-growth calculation.</small></label>
+        </div>
+      </details>
+
+      <div class="validation" id="validationMessage" role="alert" aria-live="polite" hidden></div>
+    </section>
+
+    <aside class="results-card" aria-labelledby="resultsHeading">
+      <div class="eyebrow">MODELED RESULT</div>
+      <h2 id="resultsHeading">Your compound-growth snapshot</h2>
+      <div class="hero-result"><span>Ending value</span><strong id="endingValue">₹0</strong><small id="endingNote">After 10 years at a 7.0% nominal annual rate, compounded monthly.</small></div>
+      <div class="result-grid">
+        <div class="metric"><span>Total contributed</span><strong id="totalContributed">₹0</strong><small>Starting principal plus regular contributions</small></div>
+        <div class="metric"><span>Growth / interest earned</span><strong id="growthEarned">₹0</strong><small>Ending value minus money contributed</small></div>
+        <div class="metric"><span>Effective annual rate</span><strong id="effectiveAnnualRate">0.00%</strong><small>Derived from nominal rate and compounding frequency</small></div>
+        <div class="metric"><span>Simple-interest comparison</span><strong id="simpleEndingValue">₹0</strong><small id="simpleDifference">Illustrative mathematical comparison</small></div>
+      </div>
+      <div class="real-value" id="realValueCard" hidden><span>Ending value in today's money</span><strong id="realEndingValue">₹0</strong><small id="realValueNote">Adjusted for the inflation assumption.</small></div>
+      <div class="actions-card">
+        <button class="btn btn-primary" id="reportBtn" type="button">Generate Compound Interest Report</button>
+        <button class="btn btn-secondary" id="copySummaryBtn" type="button">Copy Summary</button>
+        <button class="btn btn-secondary" id="csvBtn" type="button">Download CSV</button>
+        <p class="status-message" id="reportDownloadStatus" role="status" aria-live="polite"></p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="visual-section" id="growth-path">
+  <div class="container visual-grid">
+    <div class="chart-card">
+      <div class="section-head"><div><div class="eyebrow">GROWTH PATH</div><h2>Where the ending value comes from</h2><p>Compare cumulative money contributed with the modeled compound balance over time.</p></div></div>
+      <div class="chart-wrap"><svg id="growthChart" viewBox="0 0 800 380" role="img" aria-labelledby="chartTitle chartDesc"><title id="chartTitle">Compound growth path</title><desc id="chartDesc">Chart comparing cumulative contributions and modeled compound value over time.</desc></svg></div>
+      <p class="chart-summary" id="chartSummary" aria-live="polite"></p>
+      <div class="chart-legend"><span><i class="legend-line contributed"></i>Total contributed</span><span><i class="legend-line compound"></i>Modeled compound value</span><span id="realLegend" hidden><i class="legend-line real"></i>Inflation-adjusted value</span></div>
+    </div>
+
+    <div class="table-card">
+      <div class="section-head"><div><div class="eyebrow">YEAR BY YEAR</div><h2>Annual growth table</h2><p>See cumulative contributions, ending balance and modeled growth at each year-end.</p></div></div>
+      <div class="table-scroll"><table><thead><tr><th>Year</th><th>Total contributed</th><th>Ending balance</th><th>Growth</th><th class="real-column" hidden>Today's money</th></tr></thead><tbody id="annualTableBody"></tbody></table></div>
+      <p class="table-note" id="tableNote">The web table shows up to 31 rows for readability. The CSV and report include the full annual series.</p>
+    </div>
+  </div>
+</section>
+
+<section class="explain-section" id="methodology">
+  <div class="container explain-grid">
+    <div>
+      <div class="eyebrow">HOW IT WORKS</div>
+      <h2>Compounding frequency changes the effective annual rate.</h2>
+      <p>The starting principal uses the nominal annual rate and selected compounding frequency. Optional contributions are modeled at an equivalent periodic rate derived from the effective annual rate so contribution cadence can remain independent of compounding cadence.</p>
+      <div class="formula-card"><strong>Principal growth</strong><code>FV = P × (1 + j/n)^(n×t)</code></div>
+      <div class="formula-card"><strong>Effective annual rate</strong><code>EAR = (1 + j/n)^n − 1</code></div>
+    </div>
+    <div>
+      <div class="eyebrow">IMPORTANT CONTEXT</div>
+      <h2>Use the result as a scenario, not a forecast.</h2>
+      <p>A bank deposit can have a stated interest convention. Market investments do not earn a smooth guaranteed rate, so an entered investment return should be interpreted as an assumption used to understand compounding mechanics.</p>
+      <ul class="explain-list"><li>Country and currency control terminology and formatting; they do not perform FX conversion.</li><li>Regular contributions are assumed to be evenly spaced.</li><li>Simple interest is shown only as an educational mathematical comparison.</li><li>Inflation-adjusted output is explicitly labeled in today's purchasing-power terms.</li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="next-step-section">
+  <div class="container next-step-grid">
+    <div><div class="eyebrow">CONTINUE PLANNING</div><h2>Need a contribution-plan calculator instead?</h2><p>Use the SIP / Recurring Investment Calculator when your main question is how much to invest regularly, how to reach a target, or how a step-up contribution could change the path.</p></div>
+    <div class="next-links"><a class="btn btn-primary" href="/sip-calculator/">Open SIP / Recurring Investment Calculator</a><a class="btn btn-secondary" href="/goal-planner/">Open Goal Planner</a></div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand"><a class="footer-wordmark" href="/">CARROWMONT</a><p>Financial Planning, Tools &amp; Learning — practical calculators and educational resources for clearer financial decisions.</p></div>
+    <div class="footer-col"><strong>Carrowmont</strong><a href="/about.html">About</a><a href="/methodology.html">Methodology</a><a href="/editorial-policy.html">Editorial policy</a><a href="/contact.html">Contact</a></div>
+    <div class="footer-col"><strong>Tools</strong><a href="/sip-calculator/">SIP / Recurring Investment</a><a href="/compound-interest-calculator/">Compound Interest Calculator</a><a href="/mortgage-payoff-calculator/">Mortgage / Home Loan Payoff</a><a href="/retirement-calculator/">Retirement Planner</a><a href="/inflation-calculator/">Inflation Calculator</a><a href="/goal-planner/">Goal Planner</a><a href="/financial-independence/">Financial Independence</a><a href="/budget-cash-flow-planner/">Budget &amp; Cash Flow Planner</a><a href="/tools.html">All tools</a></div>
+    <div class="footer-col"><strong>Legal</strong><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/disclaimer.html">Disclaimer</a></div>
+  </div>
+  <div class="container footer-product-bottom"><span>© 2026 Carrowmont. Educational planning tools.</span><span>Illustrative estimates, not financial advice.</span></div>
+</footer>
+
+<script src="locale.js?v=20261016-core8"></script>
+<script src="shared-plan-state.js?v=20261016-core8" data-carrowmont-tool="compound-interest-calculator"></script>
+<script src="shared-plan-bridge.js?v=20261016-core8" data-carrowmont-tool="compound-interest-calculator"></script>
+<script src="analytics.js?v=20261016-core8"></script>
+<script src="core.js?v=20261016-core8"></script>
+<script src="pdf-export.js?v=20261016-core8"></script>
+<script src="report-standard.js?v=20261016-core8"></script>
+<script src="compound-interest-pdf-renderer.js?v=20261016-core8"></script>
+<script src="app.js?v=20261016-core8"></script>
+</body>
+</html>
