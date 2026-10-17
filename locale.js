@@ -226,3 +226,40 @@
     currencySymbol
   };
 })();
+/* Carrowmont compact footer gateways - RETIRE1 */
+(() => {
+  'use strict';
+  const L = window.CarrowmontLocale;
+  if (!L) return;
+  function housingLabel(region) {
+    if (region === 'IN' || region === 'AU' || region === 'NZ') return 'Home Loan';
+    if (region === 'US' || region === 'CA' || region === 'GB' || region === 'IE') return 'Mortgage';
+    return 'Mortgage & Home Loan';
+  }
+  function syncCompactFooter() {
+    const region = L.getRegion?.() || 'OTHER';
+    const investment = region === 'IN' ? 'SIP Calculator' : 'Recurring Investment Calculator';
+    document.querySelectorAll('.site-footer .footer-col').forEach(col => {
+      const heading = col.querySelector(':scope > strong');
+      if (!heading || heading.textContent.trim() !== 'Tools') return;
+      col.dataset.cmCompactTools = '1';
+      col.replaceChildren(heading);
+      const links = [
+        ['/tools.html','All financial tools','footer-all-tools'],
+        ['/sip-calculator/',investment,'footer-investment-link'],
+        ['/retirement-calculator/','Retirement Planner','footer-retirement-link'],
+        ['/mortgage-payoff-calculator/',housingLabel(region),'footer-housing-gateway'],
+        ['/budget-cash-flow-planner/','Budget & Cash Flow Planner','footer-budget-link']
+      ];
+      links.forEach(([href,label,className]) => {
+        const a=document.createElement('a');a.href=href;a.textContent=label;a.className=className;
+        col.appendChild(a);
+      });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', syncCompactFooter, { once:true });
+  else syncCompactFooter();
+  window.addEventListener('carrowmont:localechange', syncCompactFooter);
+  window.CarrowmontCompactFooter = { sync: syncCompactFooter };
+})();
+
