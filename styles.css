@@ -10,3 +10,32 @@
 @media(max-width:1040px){.top-nav{display:none}.mobile-nav{display:block}.intro-grid,.planner-grid,.visual-grid,.explain-grid{grid-template-columns:1fr}.results-card{position:static}.intro-card{max-width:720px}.visual-grid{gap:20px}.next-step-grid{grid-template-columns:1fr}.next-links{flex-direction:row;flex-wrap:wrap}.footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){.container{width:calc(100% - 28px)}.header-inner{min-height:72px;gap:12px}.brand{font-size:21px}.brand-divider{height:28px;margin:0 10px}.product-label{max-width:150px;overflow:hidden;text-overflow:ellipsis;font-size:12.5px}.header-actions{gap:8px}.locale-menu summary{padding:8px 10px}.locale-popover{position:fixed;left:14px;right:14px;top:78px;width:auto}.intro{padding-bottom:44px}.intro-grid{padding-top:32px;gap:28px}.intro h1{font-size:42px;letter-spacing:-1.5px}.lede{font-size:17px}.mini-flow{grid-template-columns:1fr;gap:5px}.mini-flow span{transform:rotate(90deg);justify-self:start}.learn-bridge-card{grid-template-columns:1fr;padding:22px}.learn-actions{width:100%}.learn-actions .btn{width:100%}.planner-shell,.visual-section,.explain-section{padding:48px 0}.planner-card,.results-card,.chart-card,.table-card{padding:21px;border-radius:18px}.section-head{display:block}.text-btn{padding-left:0}.fields-2,.fields-3,.result-grid{grid-template-columns:1fr}.hero-result strong{font-size:32px}.chart-wrap svg{min-height:240px}.table-scroll{max-height:470px}.explain-grid{gap:24px}.next-step-section{padding:44px 0}.next-step-grid{padding:22px}.next-links{display:grid}.next-links .btn{width:100%}.footer-grid{grid-template-columns:1fr}.footer-product-bottom{flex-direction:column}.mobile-nav .container{gap:15px}}
 @media(max-width:390px){.brand-divider{display:none}.product-label{display:none}.intro h1{font-size:37px}.planner-card,.results-card,.chart-card,.table-card{padding:18px}.hero-result{padding:18px}.hero-result strong{font-size:29px}.chart-legend{gap:10px}.chart-wrap svg{min-height:220px}}
+
+/* Carrowmont shared tool-header alignment polish - Snapshot 77 */
+.site-header{height:76px;border-bottom:1px solid #d6e2e9;background:#fff;position:sticky;top:0;z-index:30}
+.site-header .container{width:min(1480px,calc(100% - 64px));margin:auto}
+.site-header .header-inner{height:100%;min-height:0;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.site-header .brand-cluster{display:flex;align-items:center;gap:14px;min-width:0}
+.site-header .brand{font-weight:900;letter-spacing:.08em;text-decoration:none;color:#102945;font-size:23px}
+.site-header .brand-divider{height:32px;width:1px;background:#d6e2e9;margin:0}
+.site-header .product-label{font-size:16px;font-weight:700;color:#62748d;white-space:nowrap}
+.site-header .header-actions{display:flex;align-items:center;gap:20px}
+.site-header .top-nav{gap:28px}
+.site-header .top-nav a{color:#566b85;text-decoration:none;font-weight:700;font-size:15px}
+.site-header .top-nav a:hover{color:#08756d}
+.site-header .locale-menu summary{appearance:none;-webkit-appearance:none;list-style:none;border:1px solid #c8dae4;border-radius:999px;padding:12px 18px;min-width:170px;display:flex;justify-content:center;align-items:center;gap:9px;font-size:16px;line-height:1;font-weight:800;cursor:pointer;background:#fff}
+.site-header .locale-menu summary::marker{content:""}
+.site-header .locale-menu summary::-webkit-details-marker{display:none}
+.site-header .locale-globe,.site-header .locale-chevron{display:inline-flex;align-items:center;justify-content:center;line-height:0}
+.site-header .locale-globe{width:18px;height:18px;flex:0 0 18px}
+.site-header .locale-globe svg{width:18px;height:18px;display:block;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.site-header .locale-chevron{width:14px;height:14px;flex:0 0 14px;font-size:0}
+.site-header .locale-chevron svg{width:14px;height:14px;display:block;fill:none;stroke:currentColor;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
+.site-header .locale-popover{position:absolute;right:0;left:auto;top:54px;width:360px;padding:22px;background:#fff;border:1px solid #d6e2e9;border-radius:18px;box-shadow:0 20px 50px rgba(16,41,69,.15);z-index:50}
+.site-header .locale-popover h3{margin:0 0 4px;color:#102945;font-size:1.17em}
+.site-header .locale-popover>p{margin:0 0 16px;color:#5d7694;line-height:1.45;font-size:16px}
+.site-header .locale-popover label{display:block;font-size:16px;font-weight:800;margin:12px 0 0;color:#102945}
+.site-header .locale-popover select{display:block;width:100%;margin-top:7px;padding:11px;border:1px solid #c8d9e3;border-radius:10px;background:#fff;color:#102945;min-height:0;outline:none}
+.site-header .locale-note{margin:14px 0 0;padding:0;background:transparent;border-radius:0;color:#5d7694;line-height:1.45;font-size:13px}
+.site-header #localeSummary{box-sizing:border-box;height:44px;min-height:44px;max-height:44px}
+@media(max-width:760px){.site-header{height:auto}.site-header .container{width:min(100% - 28px,1480px)}.site-header .header-inner{height:auto;min-height:0;padding:12px 0;align-items:flex-start;gap:12px}.site-header .brand-divider,.site-header .product-label{display:none}.site-header .brand{font-size:20px}.site-header .locale-menu summary{min-width:auto;padding:9px 11px;font-size:13px}.site-header #localeSummary{height:38px;min-height:38px;max-height:38px}.site-header .locale-popover{position:absolute;width:min(340px,calc(100vw - 28px));right:-3px;left:auto;top:54px}}
