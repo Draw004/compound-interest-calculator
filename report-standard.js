@@ -53,9 +53,24 @@
     return map[regionCode]||{title:'Mortgage / Home Loan Payoff',desc:'See how extra payments, prepayments or an earlier payoff target could change interest and time to debt-free.'};
   }
 
+
+  function loanIdentity(regionCode=region()){
+    const map={
+      IN:{title:'EMI Calculator',desc:'Calculate a monthly EMI, total interest and repayment for one fixed-rate reducing-balance loan, with optional extra-payment scenarios.'},
+      US:{title:'Loan Calculator',desc:'Calculate a monthly loan payment, total interest and repayment for one fixed-rate amortizing loan, with optional extra payments.'},
+      CA:{title:'Loan Calculator',desc:'Calculate a monthly loan payment, total interest and repayment for one fixed-rate amortizing loan, with optional extra payments.'},
+      GB:{title:'Loan Repayment Calculator',desc:'Calculate a monthly loan repayment, total interest and repayment for one fixed-rate amortizing loan, with optional extra payments.'},
+      AU:{title:'Loan Repayment Calculator',desc:'Calculate a monthly loan repayment, total interest and repayment for one fixed-rate amortizing loan, with optional extra repayments.'},
+      NZ:{title:'Loan Repayment Calculator',desc:'Calculate a monthly loan repayment, total interest and repayment for one fixed-rate amortizing loan, with optional extra repayments.'},
+      IE:{title:'Loan Repayment Calculator',desc:'Calculate a monthly loan repayment, total interest and repayment for one fixed-rate amortizing loan, with optional extra repayments.'}
+    };
+    return map[regionCode]||{title:'Loan / EMI Calculator',desc:'Calculate a monthly loan payment or EMI, total interest and repayment for one fixed-rate amortizing loan, with optional extra payments.'};
+  }
+
   function toolCatalog(regionCode=region()){
     const investment = investmentIdentity(regionCode);
     const housing = housingIdentity(regionCode);
+    const loan = loanIdentity(regionCode);
     return {
       investment:{
         key:'investment', title:investment.toolName,
@@ -70,7 +85,8 @@
       inflation:{ key:'inflation', title:'Inflation Calculator', desc:'See how inflation may change future costs and purchasing power across different time horizons and currencies.', url:'carrowmont.com/inflation-calculator/' },
       budget:{ key:'budget', title:'Budget & Cash Flow Planner', desc:'Organize income, bills, irregular expenses, emergency reserves and safe-to-spend cash flow around the way you are actually paid.', url:'carrowmont.com/budget-cash-flow-planner/' },
       housing:{ key:'housing', title:housing.title, desc:housing.desc, url:'carrowmont.com/mortgage-payoff-calculator/' },
-      compound:{ key:'compound', title:'Compound Interest Calculator', desc:'See how a starting amount can change under a stated rate, compounding frequency and time horizon, with optional regular contributions.', url:'carrowmont.com/compound-interest-calculator/' }
+      compound:{ key:'compound', title:'Compound Interest Calculator', desc:'See how a starting amount can change under a stated rate, compounding frequency and time horizon, with optional regular contributions.', url:'carrowmont.com/compound-interest-calculator/' },
+      loan:{ key:'loan', title:loan.title, desc:loan.desc, url:'carrowmont.com/loan-calculator/' }
     };
   }
 
@@ -197,7 +213,7 @@
     const tools=Object.values(catalog).filter(t=>t.key!==currentTool);
     P().text(ctx,'CARROWMONT',M,58,{size:15,weight:900,color:C.teal});
     P().text(ctx,'Continue planning with Carrowmont',M,101,{size:27,weight:900,color:C.ink});
-    const intro=config.intro || `This calculation is one part of a broader financial plan. Explore ${inv.planningPhrase}, compound growth, retirement, life goals, financial independence, inflation, housing debt and day-to-day cash flow with Carrowmont.`;
+    const intro=config.intro || `This calculation is one part of a broader financial plan. Explore ${inv.planningPhrase}, compound growth, retirement, life goals, financial independence, inflation, housing debt, loan repayments and day-to-day cash flow with Carrowmont.`;
     P().wrappedText(ctx,intro,M,130,CW,{size:11,lineHeight:16,weight:500,color:C.muted,maxLines:3});
     hline(ctx,M,W-M,178,C.navy,2);
     const gapX=16,gapY=14,cw=(CW-gapX)/2,ch=142,gridTop=204;
@@ -225,6 +241,7 @@
   window.CarrowmontReportStandard={
     investmentIdentity,
     housingIdentity,
+    loanIdentity,
     toolCatalog,
     guidePage,
     continuePlanningPage,
