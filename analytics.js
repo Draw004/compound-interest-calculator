@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  const CLOUDFLARE_ANALYTICS_TOKEN = "713a819bf0244b9fb4245554a6f20ee2";
+  const CLOUDFLARE_ANALYTICS_TOKEN = "be7aec3cfdf3419e97d4452d4de3d672";
 
   function loadCloudflareAnalytics() {
     if (document.querySelector('script[data-carrowmont-cloudflare="true"]')) return;
