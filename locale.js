@@ -94,9 +94,53 @@
     TRY: { label: "Turkish Lira", symbol: "₺" }
   };
 
+  function detectRegionFromTimezone() {
+    let tz = "";
+    try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (_) {}
+    if (!tz) return "";
+
+    const exact = {
+      "Asia/Kolkata":"IN", "Asia/Calcutta":"IN",
+      "Pacific/Auckland":"NZ", "Pacific/Chatham":"NZ",
+      "Europe/London":"GB", "Europe/Dublin":"IE",
+      "Europe/Vienna":"AT", "Europe/Brussels":"BE", "Europe/Copenhagen":"DK", "Europe/Helsinki":"FI",
+      "Europe/Paris":"FR", "Europe/Berlin":"DE", "Europe/Busingen":"DE", "Europe/Rome":"IT", "Europe/Madrid":"ES",
+      "Atlantic/Canary":"ES", "Africa/Ceuta":"ES", "Europe/Amsterdam":"NL", "Europe/Oslo":"NO", "Europe/Warsaw":"PL",
+      "Europe/Lisbon":"PT", "Atlantic/Madeira":"PT", "Atlantic/Azores":"PT", "Europe/Stockholm":"SE", "Europe/Zurich":"CH",
+      "Asia/Dhaka":"BD", "America/Santiago":"CL", "America/Punta_Arenas":"CL", "Pacific/Easter":"CL",
+      "Asia/Shanghai":"CN", "Asia/Urumqi":"CN", "Asia/Tokyo":"JP", "Asia/Seoul":"KR", "Asia/Singapore":"SG",
+      "Asia/Dubai":"AE", "Asia/Riyadh":"SA", "Asia/Muscat":"OM", "Asia/Qatar":"QA",
+      "America/Toronto":"CA", "America/Vancouver":"CA", "America/Edmonton":"CA", "America/Winnipeg":"CA",
+      "America/Halifax":"CA", "America/St_Johns":"CA", "America/Moncton":"CA", "America/Regina":"CA",
+      "America/Whitehorse":"CA", "America/Iqaluit":"CA",
+      "America/New_York":"US", "America/Chicago":"US", "America/Denver":"US", "America/Los_Angeles":"US",
+      "America/Phoenix":"US", "America/Anchorage":"US", "America/Adak":"US", "Pacific/Honolulu":"US",
+      "America/Detroit":"US", "America/Boise":"US", "America/Juneau":"US", "America/Sitka":"US", "America/Yakutat":"US",
+      "America/Sao_Paulo":"BR", "America/Manaus":"BR", "America/Recife":"BR", "America/Fortaleza":"BR", "America/Belem":"BR",
+      "America/Bahia":"BR", "America/Cuiaba":"BR", "America/Campo_Grande":"BR", "America/Rio_Branco":"BR", "America/Noronha":"BR",
+      "America/Mexico_City":"MX", "America/Cancun":"MX", "America/Chihuahua":"MX", "America/Hermosillo":"MX",
+      "America/Monterrey":"MX", "America/Mazatlan":"MX", "America/Tijuana":"MX", "America/Matamoros":"MX", "America/Ojinaga":"MX",
+      "Africa/Johannesburg":"ZA", "Asia/Jakarta":"ID", "Asia/Makassar":"ID", "Asia/Jayapura":"ID", "Asia/Pontianak":"ID",
+      "Asia/Kuala_Lumpur":"MY", "Asia/Kuching":"MY", "Asia/Bangkok":"TH", "Asia/Manila":"PH", "Asia/Ho_Chi_Minh":"VN",
+      "Asia/Hong_Kong":"HK", "Asia/Taipei":"TW", "Europe/Istanbul":"TR",
+      "Europe/Moscow":"RU", "Europe/Kaliningrad":"RU", "Europe/Samara":"RU", "Asia/Yekaterinburg":"RU", "Asia/Omsk":"RU",
+      "Asia/Novosibirsk":"RU", "Asia/Krasnoyarsk":"RU", "Asia/Irkutsk":"RU", "Asia/Chita":"RU", "Asia/Yakutsk":"RU",
+      "Asia/Khandyga":"RU", "Asia/Vladivostok":"RU", "Asia/Ust-Nera":"RU", "Asia/Magadan":"RU", "Asia/Sakhalin":"RU",
+      "Asia/Srednekolymsk":"RU", "Asia/Kamchatka":"RU", "Asia/Anadyr":"RU"
+    };
+    if (exact[tz] && regions[exact[tz]]) return exact[tz];
+    if (tz.startsWith("Australia/") && regions.AU) return "AU";
+    if (tz.startsWith("America/Indiana/") || tz.startsWith("America/Kentucky/")) return regions.US ? "US" : "";
+    return "";
+  }
+
   function detectRegion() {
-    const langs = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || "en-US"])
-      .map(String);
+    // Privacy-first first-visit inference: prefer the device timezone because it
+    // usually follows the visitor's current country even when browser language is en-US.
+    const timezoneRegion = detectRegionFromTimezone();
+    if (timezoneRegion) return timezoneRegion;
+
+    const langs = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || "en-US"]).map(String);
     for (const lang of langs) {
       const upper = lang.toUpperCase().replace("_", "-");
       const parts = upper.split("-");
@@ -106,19 +150,24 @@
     }
     return "OTHER";
   }
-
-  function safeGet(key) {
+function safeGet(key) {
     try { return localStorage.getItem(key); } catch (_) { return null; }
   }
   function safeSet(key, value) {
     try { localStorage.setItem(key, value); } catch (_) {}
   }
 
-  let regionCode = safeGet(STORAGE_REGION);
-  if (!regions[regionCode]) regionCode = detectRegion();
+  const storedRegion = safeGet(STORAGE_REGION);
+  const storedCurrency = safeGet(STORAGE_CURRENCY);
+  const hasStoredRegion = !!regions[storedRegion];
+  const hasStoredCurrency = !!currencies[storedCurrency];
 
-  let currencyCode = safeGet(STORAGE_CURRENCY);
-  if (!currencies[currencyCode]) currencyCode = regions[regionCode].currency;
+  // A previously applied region is an explicit user preference and wins over
+  // automatic first-visit inference. Currency overrides are only trusted when
+  // they belong to a saved region, preventing orphaned storage from creating
+  // combinations such as New Zealand + stale USD by accident.
+  let regionCode = hasStoredRegion ? storedRegion : detectRegion();
+  let currencyCode = hasStoredRegion && hasStoredCurrency ? storedCurrency : regions[regionCode].currency;
 
   function getRegion() { return regionCode; }
   function getCurrency() { return currencyCode; }
