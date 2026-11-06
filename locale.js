@@ -54,6 +54,24 @@
     RU: { label: "Russia", locale: "ru-RU", currency: "RUB" },
     TR: { label: "Türkiye", locale: "tr-TR", currency: "TRY" },
 
+
+    // GLOBAL2: additional major and developing economies. Formatting/default-currency profiles only.
+    AR: { label: "Argentina", locale: "es-AR", currency: "ARS", contributionFrequency: "monthly", twoWeekLabel: "neutral" },
+    IL: { label: "Israel", locale: "en-IL", currency: "ILS", contributionFrequency: "monthly", twoWeekLabel: "neutral" },
+    CO: { label: "Colombia", locale: "es-CO", currency: "COP", contributionFrequency: "monthly", twoWeekLabel: "neutral" },
+    RO: { label: "Romania", locale: "ro-RO", currency: "RON", contributionFrequency: "monthly", twoWeekLabel: "neutral" },
+    PK: { label: "Pakistan", locale: "en-PK", currency: "PKR", contributionFrequency: "monthly", twoWeekLabel: "neutral" },
+    CZ: { label: "Czechia", locale: "cs-CZ", currency: "CZK", contributionFrequency: "monthly", twoWeekLabel: "neutral" },
+    EG: { label: "Egypt", locale: "en-EG", currency: "EGP", contributionFrequency: "monthly", twoWeekLabel: "neutral" },
+    PE: { label: "Peru", locale: "es-PE", currency: "PEN", contributionFrequency: "monthly", twoWeekLabel: "neutral" },
+    KZ: { label: "Kazakhstan", locale: "en-KZ", currency: "KZT", contributionFrequency: "monthly", twoWeekLabel: "neutral" },
+    NG: { label: "Nigeria", locale: "en-NG", currency: "NGN", contributionFrequency: "monthly", twoWeekLabel: "neutral" },
+    GR: { label: "Greece", locale: "el-GR", currency: "EUR", contributionFrequency: "monthly", twoWeekLabel: "neutral" },
+    MA: { label: "Morocco", locale: "en-MA", currency: "MAD", contributionFrequency: "monthly", twoWeekLabel: "neutral" },
+    KW: { label: "Kuwait", locale: "en-KW", currency: "KWD", contributionFrequency: "monthly", twoWeekLabel: "neutral" },
+    UZ: { label: "Uzbekistan", locale: "en-UZ", currency: "UZS", contributionFrequency: "monthly", twoWeekLabel: "neutral" },
+    KE: { label: "Kenya", locale: "en-KE", currency: "KES", contributionFrequency: "monthly", twoWeekLabel: "neutral" },
+
     OTHER: { label: "Other / International", locale: "en-US", currency: "USD" }
   };
 
@@ -91,6 +109,22 @@
     HKD: { label: "Hong Kong Dollar", symbol: "HK$" },
     TWD: { label: "New Taiwan Dollar", symbol: "NT$" },
     RUB: { label: "Russian Ruble", symbol: "₽" },
+
+    // GLOBAL2: currencies for the additional country profiles.
+    ARS: { label: "Argentine Peso", symbol: "$" },
+    ILS: { label: "Israeli New Shekel", symbol: "₪" },
+    COP: { label: "Colombian Peso", symbol: "$" },
+    RON: { label: "Romanian Leu", symbol: "lei" },
+    PKR: { label: "Pakistani Rupee", symbol: "₨" },
+    CZK: { label: "Czech Koruna", symbol: "Kč" },
+    EGP: { label: "Egyptian Pound", symbol: "E£" },
+    PEN: { label: "Peruvian Sol", symbol: "S/" },
+    KZT: { label: "Kazakhstani Tenge", symbol: "₸" },
+    NGN: { label: "Nigerian Naira", symbol: "₦" },
+    MAD: { label: "Moroccan Dirham", symbol: "MAD" },
+    KWD: { label: "Kuwaiti Dinar", symbol: "KWD" },
+    UZS: { label: "Uzbekistani Som", symbol: "UZS" },
+    KES: { label: "Kenyan Shilling", symbol: "KSh" },
     TRY: { label: "Turkish Lira", symbol: "₺" }
   };
 
@@ -110,6 +144,16 @@
       "Asia/Dhaka":"BD", "America/Santiago":"CL", "America/Punta_Arenas":"CL", "Pacific/Easter":"CL",
       "Asia/Shanghai":"CN", "Asia/Urumqi":"CN", "Asia/Tokyo":"JP", "Asia/Seoul":"KR", "Asia/Singapore":"SG",
       "Asia/Dubai":"AE", "Asia/Riyadh":"SA", "Asia/Muscat":"OM", "Asia/Qatar":"QA",
+      // GLOBAL2 additional country/timezone mappings.
+      "America/Argentina/Buenos_Aires":"AR", "America/Argentina/Catamarca":"AR", "America/Argentina/Cordoba":"AR",
+      "America/Argentina/Jujuy":"AR", "America/Argentina/La_Rioja":"AR", "America/Argentina/Mendoza":"AR",
+      "America/Argentina/Rio_Gallegos":"AR", "America/Argentina/Salta":"AR", "America/Argentina/San_Juan":"AR",
+      "America/Argentina/San_Luis":"AR", "America/Argentina/Tucuman":"AR", "America/Argentina/Ushuaia":"AR",
+      "Asia/Jerusalem":"IL", "America/Bogota":"CO", "Europe/Bucharest":"RO", "Asia/Karachi":"PK",
+      "Europe/Prague":"CZ", "Africa/Cairo":"EG", "America/Lima":"PE",
+      "Asia/Almaty":"KZ", "Asia/Aqtau":"KZ", "Asia/Aqtobe":"KZ", "Asia/Atyrau":"KZ", "Asia/Oral":"KZ", "Asia/Qostanay":"KZ", "Asia/Qyzylorda":"KZ",
+      "Africa/Lagos":"NG", "Europe/Athens":"GR", "Africa/Casablanca":"MA", "Asia/Kuwait":"KW",
+      "Asia/Tashkent":"UZ", "Asia/Samarkand":"UZ", "Africa/Nairobi":"KE",
       "America/Toronto":"CA", "America/Vancouver":"CA", "America/Edmonton":"CA", "America/Winnipeg":"CA",
       "America/Halifax":"CA", "America/St_Johns":"CA", "America/Moncton":"CA", "America/Regina":"CA",
       "America/Whitehorse":"CA", "America/Iqaluit":"CA",
