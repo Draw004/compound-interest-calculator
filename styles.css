@@ -39,3 +39,11 @@
 .site-header .locale-note{margin:14px 0 0;padding:0;background:transparent;border-radius:0;color:#5d7694;line-height:1.45;font-size:13px}
 .site-header #localeSummary{box-sizing:border-box;height:44px;min-height:44px;max-height:44px}
 @media(max-width:760px){.site-header{height:auto}.site-header .container{width:min(100% - 28px,1480px)}.site-header .header-inner{height:auto;min-height:0;padding:12px 0;align-items:flex-start;gap:12px}.site-header .brand-divider,.site-header .product-label{display:none}.site-header .brand{font-size:20px}.site-header .locale-menu summary{min-width:auto;padding:9px 11px;font-size:13px}.site-header #localeSummary{height:38px;min-height:38px;max-height:38px}.site-header .locale-popover{position:absolute;width:min(340px,calc(100vw - 28px));right:-3px;left:auto;top:54px}}
+
+/* FRE8H planner form alignment - 2026-11-14 */
+.fields-3{align-items:start}
+.fields-3 .field{grid-template-rows:auto 48px auto;align-content:start}
+.fields-3 .field>small{min-height:42px}
+.money-input,.input-suffix{height:48px}
+.money-input input,.input-suffix input{height:46px}
+@media(max-width:760px){.fields-3 .field{grid-template-rows:auto 48px auto}.fields-3 .field>small{min-height:0}}
