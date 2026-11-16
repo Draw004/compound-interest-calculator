@@ -20,6 +20,13 @@
   };
   const housingTerms=()=>L.getMortgageTerms?.(L.getRegion?.())||fallbackHousingTerms(L.getRegion?.());
 
+  function loadTrustContract(){
+    const attach=()=>window.CarrowmontTrust?.attachTool?.({tool});
+    if(window.CarrowmontTrust){attach();return;}
+    if(document.querySelector('script[data-cm-trust-loader]'))return;
+    const trust=document.createElement('script');trust.src='/assets/trust/carrowmont-trust.js?v=20261116-fre9';trust.defer=true;trust.dataset.cmTrustLoader='1';trust.addEventListener('load',attach,{once:true});document.head.appendChild(trust);
+  }
+
   function styles(){
     if(document.getElementById('cm-shared-plan-bridge-style'))return;
     const st=document.createElement('style');st.id='cm-shared-plan-bridge-style';st.textContent=`
@@ -90,7 +97,7 @@
     mountBanner('Loan balance kept separate from inflation',`A shared ${housingTerms().noun} balance of ${format(balance)} is available, but Carrowmont will not inflate the loan balance merely because the Inflation Calculator is open. Use this tool only for a separate purchasing-power or future-cost question.`,[{label:'Dismiss',secondary:true,run:host=>host.hidden=true}]);
   }
 
-  function run(){hideBanner();({
+  function run(){loadTrustContract();hideBanner();({
     'mortgage-payoff-calculator':mortgageBridge,
     'budget-cash-flow-planner':budgetBridge,
     'retirement-calculator':retirementBridge,
